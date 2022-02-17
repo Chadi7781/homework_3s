@@ -1,0 +1,31 @@
+version: '3'
+services:
+  workaround-mysql:
+    container_name: workaround-mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: TimeSheetDevops
+      MYSQL_USER: springuser
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3308:3306"
+    restart: always
+  workaround:
+    depends_on: 
+      - workaround-mysql
+    build: 
+      context: "./"
+      dockerfile: "Dockerfile"
+    restart: on-failure
+    ports:
+      - 8086:8086
+    restart: always
+    
+    volumes:
+      - TimeSheetDevops
+      - ~/.m2:/root/.m2
+    expose:
+      - "8086"
+    command: "mvn clean spring-boot:run"
