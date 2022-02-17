@@ -90,14 +90,6 @@ public class RestControlEmploye {
 
    
 
-    @GetMapping(value = "getSalaireByEmployeIdJPQL/{idemp}")
-    @ResponseBody
-
-	public float getSalaireByEmployeIdJPQL(@PathVariable("idemp")int employeId) {
-		return iemployeservice.getSalaireByEmployeIdJPQL(employeId);
-	}
-
-	
 
 
 	@GetMapping(value = "/getAllEmployes")

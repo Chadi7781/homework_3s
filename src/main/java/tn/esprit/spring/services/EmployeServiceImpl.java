@@ -74,11 +74,7 @@ public class EmployeServiceImpl implements IEmployeService {
 
 	}
 
-	public float getSalaireByEmployeIdJPQL(int employeId) {
-		return employeRepository.getSalaireByEmployeIdJPQL(employeId);
-	}
-
-
+	
 
 	public List<Employe> getAllEmployes() {
 				return (List<Employe>) employeRepository.findAll();

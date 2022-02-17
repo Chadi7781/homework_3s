@@ -17,7 +17,6 @@ public interface IEmployeService {
 	public int getNombreEmployeJPQL();
 	public List<String> getAllEmployeNamesJPQL();
 	public void mettreAjourEmailByEmployeIdJPQL(String email, int employeId);
-	public float getSalaireByEmployeIdJPQL(int employeId);
 	public List<Employe> getAllEmployes();
 	
 	
