@@ -25,7 +25,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import tn.esprit.spring.aop.TrackTime;
 import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.entities.Role;
-import tn.esprit.spring.repository.ContratRepository;
 import tn.esprit.spring.repository.EmployeRepository;
 import tn.esprit.spring.services.EmployeServiceImpl;
 
@@ -41,9 +40,7 @@ public class EmployeServiceImplTest implements AbstractBaseTest {
 	@Autowired
 	@Mock
 	EmployeRepository employeRepo;
-	
-	@Autowired
-	ContratRepository contratRepository;
+
 	
 	private Employe employe1;
 	

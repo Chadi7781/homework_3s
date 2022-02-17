@@ -13,14 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.entities.Contrat;
 import tn.esprit.spring.entities.Employe;
-import tn.esprit.spring.entities.Entreprise;
-import tn.esprit.spring.entities.Mission;
-import tn.esprit.spring.entities.Timesheet;
 import tn.esprit.spring.services.IEmployeService;
-import tn.esprit.spring.services.IEntrepriseService;
-import tn.esprit.spring.services.ITimesheetService;
+
+
 
 @RestController
 public class RestControlEmploye {
@@ -28,11 +24,7 @@ public class RestControlEmploye {
 	
 	@Autowired
 	IEmployeService iemployeservice;
-	@Autowired
-	IEntrepriseService ientrepriseservice;
-	@Autowired
-	ITimesheetService itimesheetservice;
-
+	
 	
 	// http://localhost:8081/SpringMVC/servlet/ajouterEmployer
 	//
@@ -52,35 +44,9 @@ public class RestControlEmploye {
 		iemployeservice.mettreAjourEmailByEmployeId(email, employeId);
 		
 	}
-	// http://localhost:8081/SpringMVC/servlet/affecterEmployeADepartement/1/1
-	@PutMapping(value = "/affecterEmployeADepartement/{idemp}/{iddept}") 
-	public void affecterEmployeADepartement(@PathVariable("idemp")int employeId, @PathVariable("iddept")int depId) {
-		iemployeservice.affecterEmployeADepartement(employeId, depId);
-		
-	}
-	
-	// http://localhost:8081/SpringMVC/servlet/desaffecterEmployeDuDepartement/1/1
-	@PutMapping(value = "/desaffecterEmployeDuDepartement/{idemp}/{iddept}") 
-	public void desaffecterEmployeDuDepartement(@PathVariable("idemp")int employeId, @PathVariable("iddept")int depId)
-	{
-		iemployeservice.desaffecterEmployeDuDepartement(employeId, depId);
-	}
 
-	// http://localhost:8081/SpringMVC/servlet/ajouterContrat
+
 	
-	@PostMapping("/ajouterContrat")
-	@ResponseBody
-	public int ajouterContrat(@RequestBody Contrat contrat) {
-		iemployeservice.ajouterContrat(contrat);
-		return contrat.getReference();
-	}
-	
-	// http://localhost:8081/SpringMVC/servlet/affecterContratAEmploye/6/1
-   @PutMapping(value = "/affecterContratAEmploye/{idcontrat}/{idemp}") 
-	public void affecterContratAEmploye(@PathVariable("idcontrat")int contratId, @PathVariable("idemp")int employeId)
-	{
-		iemployeservice.affecterContratAEmploye(contratId, employeId);
-	}
 
 	
    
@@ -98,12 +64,6 @@ public class RestControlEmploye {
 		
 	}
     
-    @DeleteMapping("/deleteContratById/{idcontrat}") 
-	@ResponseBody
-	public void deleteContratById(@PathVariable("idcontrat")int contratId) {
-		iemployeservice.deleteContratById(contratId);
-	}
-
     
     @GetMapping(value = "getNombreEmployeJPQL")
     @ResponseBody
@@ -120,13 +80,6 @@ public class RestControlEmploye {
 		return iemployeservice.getAllEmployeNamesJPQL();
 	}
 
-    @GetMapping(value = "getAllEmployeByEntreprise/{identreprise}")
-    @ResponseBody
-
-	public List<Employe> getAllEmployeByEntreprise(@PathVariable("identreprise") int identreprise) {
-    	Entreprise entreprise=ientrepriseservice.getEntrepriseById(identreprise);
-		return iemployeservice.getAllEmployeByEntreprise(entreprise);
-	}
 
  	@PutMapping(value = "/mettreAjourEmailByEmployeIdJPQL/{id}/{newemail}") 
  	@ResponseBody
@@ -135,13 +88,7 @@ public class RestControlEmploye {
 		
 	}
 
-    // URL : http://localhost:8081/SpringMVC/servlet/deleteAllContratJPQL
-    @DeleteMapping("/deleteAllContratJPQL") 
-	@ResponseBody
-	public void deleteAllContratJPQL() {
-		iemployeservice.deleteAllContratJPQL();
-		
-	}
+   
 
     @GetMapping(value = "getSalaireByEmployeIdJPQL/{idemp}")
     @ResponseBody
@@ -150,19 +97,7 @@ public class RestControlEmploye {
 		return iemployeservice.getSalaireByEmployeIdJPQL(employeId);
 	}
 
-    @GetMapping(value = "getSalaireMoyenByDepartementId/{iddept}")
-    @ResponseBody
-
-	public Double getSalaireMoyenByDepartementId(@PathVariable("iddept")int departementId) {
-		return iemployeservice.getSalaireMoyenByDepartementId(departementId);
-	}
-
 	
-
-	public List<Timesheet> getTimesheetsByMissionAndDate(Employe employe, Mission mission, Date dateDebut,
-			Date dateFin) {
-		return iemployeservice.getTimesheetsByMissionAndDate(employe, mission, dateDebut, dateFin);
-	}
 
 
 	@GetMapping(value = "/getAllEmployes")
