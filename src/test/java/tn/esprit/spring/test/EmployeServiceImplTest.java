@@ -122,18 +122,7 @@ public class EmployeServiceImplTest implements AbstractBaseTest {
 		log.info("number employee : "+employeServiceImpl1.getNombreEmployeJPQL());
     }
 
-    @Test
-    @TrackTime(message = "getSalaireByEmployeIdJPQLTest ")
 
-    public void getSalaireByEmployeIdJPQLTest() {
-
-       
-		float salaire = employeServiceImpl1.getSalaireByEmployeIdJPQL(employe1.getId());
-		log.info("getSalaireByEmployeIdJPQL == " + salaire);
-		assertThat(salaire).isEqualTo(5000);
-	}
-
-    
     
     
    
